@@ -20,6 +20,5 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ['entry', 'created_on', 'updated_on']
 
 
-
 admin.site.register(Commission, CommissionAdmin)
 admin.site.register(Comment, CommentAdmin)
