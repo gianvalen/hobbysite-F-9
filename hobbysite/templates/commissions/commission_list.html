@@ -8,6 +8,7 @@
         {% for commission in object_list %}
             <li><a href="{{ commission.get_absolute_url }}">{{ commission.title }}</a></li>
             <p>created on: {{ commission.created_on  }}</p>
+            <p>last updated on: {{ commission.updated_on  }}</p>
         {% endfor %}
     </ul>
 {% endblock %}
