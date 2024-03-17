@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Online Wiki
+{% endblock %}
+
+
+
+{% block content %}
+    <h1>Online Wiki</h1>
+    <h2>List of Articles by category</h2>
+
+    <ul>
+        {% for category in articles %}
+            <li>
+                <h4>{{category.name}}</h4>
+                {{category.description}}
+                <ul>
+                    {% for article in category.articles.all %}
+                        <li>
+                            <a href = "{{ article.get_absolute_url }}">{{article.title}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% endfor %}
+            </li>
+    </ul>
+{% endblock %}
