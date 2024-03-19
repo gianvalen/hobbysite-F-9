@@ -13,7 +13,7 @@ class ArticleCategoryAdmin(admin.ModelAdmin):
 
 class ArticleAdmin(admin.ModelAdmin):
     model = Article
-    list_display = ['title', 'created_on']
+    list_display = ['title', 'created_on', 'updated_on'] 
     list_filter = ['created_on', 'updated_on'] 
     search_fields = ['title']
 
