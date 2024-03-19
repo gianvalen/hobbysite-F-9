@@ -2,16 +2,20 @@ from django.contrib import admin
 from .models import Article, ArticleCategory
 
 
+class ArticleInLine(admin.TabularInline):
+    model = Article
+
+
 class ArticleCategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description')
+    model = ArticleCategory
+    inlines = [ArticleInLine]
 
 
-@admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'created_on', 'updated_on')
-    list_filter = ('created_on', 'updated_on')
-    search_fields = ('title',)
-    date_hierarchy = 'created_on'
-
+    model = Article
+    list_display = ['title', 'created_on']
+    list_filter = ['created_on', 'updated_on'] 
+    search_fields = ['title']
 
 admin.site.register(ArticleCategory, ArticleCategoryAdmin)
+admin.site.register(Article, ArticleAdmin)
