@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'merchstore',
     'wiki',
     'blog',
+    'commissions'
 ]
 
 MIDDLEWARE = [
@@ -63,9 +64,10 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
-            os.path.join(BASE_DIR, 'templates', 'merchstore')],
-            os.path.join(BASE_DIR, 'templates', 'onlinewiki')],
-            os.path.join(BASE_DIR, 'templates', 'blog')
+            os.path.join(BASE_DIR, 'templates', 'merchstore'),
+            os.path.join(BASE_DIR, 'templates', 'onlinewiki'),
+            os.path.join(BASE_DIR, 'templates', 'blog'),
+            os.path.join(BASE_DIR, 'templates', 'commissions'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
