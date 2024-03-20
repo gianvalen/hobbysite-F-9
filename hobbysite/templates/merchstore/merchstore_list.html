@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Products List{% endblock %}
+
+{% block content %}
+    <h1>Merchandise Store</h1>
+    <h2>List of Products:</h2>
+    {% for item in items%}
+        <ul>
+            <li><a href="{{ item.get_absolute_url }}">{{ item.name }}</a></li>
+            <p>Product Type: {{ item.product_type }}</p>
+        </ul>
+    {% endfor %}
+{% endblock %}
