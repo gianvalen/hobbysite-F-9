@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'merchstore',
+    'wiki',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +63,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'templates', 'merchstore')],
+            os.path.join(BASE_DIR, 'templates', 'onlinewiki')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
