@@ -2,9 +2,6 @@ from django.contrib import admin
 
 from .models import ArticleCategory, Article
 
-# ADMIN DETAILS
-# username: xavif
-# password: csci40midtermfernando
 
 class ArticleInLine(admin.TabularInline):
     model = Article
