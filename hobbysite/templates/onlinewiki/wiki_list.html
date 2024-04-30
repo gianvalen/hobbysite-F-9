@@ -4,12 +4,35 @@
     Online Wiki
 {% endblock %}
 
+{% block page_heading %}
+    Online Wiki
+{% endblock %}
 
+{% block page_heading2 %}
+    Article List
+{% endblock %}
+
+<br>
 
 {% block content %}
-    <h1>Online Wiki</h1>
-    <h2>List of Articles by category</h2>
+    <a href = "{% url 'wiki:article-create'%}">Create New Article</a>
 
+        {% if request.user.is_authenticated %}
+            <h2>List of Articles Created by You</h2>
+            <ul>
+                {% for category in article_category %}
+                    {% for article in category.article_category.all %}
+                        {% if article.author == request.user.username %}
+                            <li>
+                                <a href = "{{ article.get_absolute_url }}">{{article.title}}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    <h2>List of Articles by Category</h2>
     <ul>
         {% for category in article_category %}
             <li>
@@ -17,12 +40,20 @@
                 {{category.description}}
                 <ul>
                     {% for article in category.article_category.all %}
-                        <li>
-                            <a href = "{{ article.get_absolute_url }}">{{article.title}}</a>
-                        </li>
+                        {% if request.user.is_authenticated %}
+                            {% if not article.author == request.user.username %}
+                                <li>
+                                    <a href = "{{ article.get_absolute_url }}">{{article.title}}</a>
+                                </li>
+                            {% endif %}
+                        {% else %}
+                            <li>
+                                <a href = "{{ article.get_absolute_url }}">{{article.title}}</a>
+                            </li>
+                        {% endif %}
                     {% endfor %}
-                </ul>
-                {% endfor %}
+                </ul>   
             </li>
+        {% endfor %}
     </ul>
 {% endblock %}
