@@ -25,7 +25,7 @@ urlpatterns = [
     path('wiki/', include('wiki.urls', namespace = "wiki")),
     path('blog/',include('blog.urls', namespace='blog')),
     path('commissions/', include('commissions.urls', namespace='commissions')),
-    path('profile/', include('django.contrib.auth.urls', namespace = "profile")),
+    path('profileapp/', include('profileapp.urls', namespace = "profileapp")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
