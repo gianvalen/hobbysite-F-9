@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from profileapp.models import Profile
 
 # Create your models here.
 
@@ -21,6 +22,7 @@ class Article(models.Model):
         on_delete = models.SET_NULL,
         null = True,
         blank = True,
+        editable = False,
         related_name = 'article_author',
     )
 
@@ -32,9 +34,9 @@ class Article(models.Model):
         )
 
     entry = models.TextField(null = True, blank = True)
-    header_image = models.ImageField(upload_to = "", null = True, blank = True)
-    created_on = models.DateTimeField(null = False, auto_now_add = True)
-    updated_on = models.DateTimeField(null = True, auto_now = True)
+    header_image = models.ImageField(upload_to = "images/wiki", null = True, blank = True)
+    created_on = models.DateTimeField(null = False, editable = False, auto_now_add = True)
+    updated_on = models.DateTimeField(null = True, editable = False, auto_now = True)
     
     def __str__(self):
         return self.title
@@ -44,6 +46,7 @@ class Article(models.Model):
     
     class Meta:
         ordering = ["-updated_on"]
+
 
 class Comment(models.Model):
     author = models.ForeignKey(
@@ -57,7 +60,7 @@ class Comment(models.Model):
     article = models.ForeignKey(
         Article,
         on_delete = models.CASCADE,
-        null = False,
+        null = True,
         blank = True,
         related_name = 'comment_article',
     )
@@ -70,4 +73,4 @@ class Comment(models.Model):
         return self.name
     
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ["created_on"]

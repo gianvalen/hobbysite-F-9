@@ -1,17 +1,23 @@
 from django.contrib import admin
+from .models import ArticleCategory, Article, Comment
 
-from .models import ArticleCategory, Article
+
+class CommentInLine(admin.TabularInline):
+    model = Comment
 
 
 class ArticleInLine(admin.TabularInline):
     model = Article
 
+
 class ArticleCategoryAdmin(admin.ModelAdmin):
     model = ArticleCategory
     inlines = [ArticleInLine]
 
+
 class ArticleAdmin(admin.ModelAdmin):
     model = Article
+    inlines = [CommentInLine]
 
     search_fields = [
         "title",
