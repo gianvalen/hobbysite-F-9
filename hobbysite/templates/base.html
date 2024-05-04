@@ -15,7 +15,7 @@
                 <button type = "submit">LOG OUT</button>
             </form>
         {% else %}
-            <a href ="{% url 'login' %}">Please login.</a>
+            <a href ="{% url 'user_management:login' %}">Please login.</a>
         {% endif %}
     {% endblock %}
 
