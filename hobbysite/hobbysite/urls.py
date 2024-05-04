@@ -19,6 +19,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from .views import HomePageView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('merchstore/', include('merchstore.urls', namespace='merchstore')),
@@ -26,6 +28,8 @@ urlpatterns = [
     path('blog/',include('blog.urls', namespace='blog')),
     path('commissions/', include('commissions.urls', namespace='commissions')),
     path('profile/', include('user_management.urls', namespace = "user_management")),
+    path('accounts/', include("django.contrib.auth.urls")),
+    path('home', HomePageView.as_view(), name='home'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

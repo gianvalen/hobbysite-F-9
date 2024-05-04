@@ -6,7 +6,12 @@ from .models import Profile
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = Profile
+    fields = ['display_name', 'email_address']
     template_name = "registration/profile_update.html"
 
     def get_success_url (self):
-        return reverse_lazy("wiki:articles") # MAKE SURE TO CHANGE SUCCESS URL
+        return reverse_lazy("home")
+    
+    def get_object(self, queryset=None):
+        # Return the profile of the currently logged-in user
+        return self.request.user.profile
