@@ -1,4 +1,3 @@
-<!-- blog_detail.html -->
 {% extends "base.html" %}
 
 {% block title %}
@@ -6,9 +5,44 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ article.title }}</h1>
-    <p>Category: {{ article.category.name }}</p>
-    <p>Created on: {{ article.created_on }}</p>
-    <p>Last updated on: {{ article.updated_on }}</p>
-    <p>{{ article.entry }}</p>
+    <a href="{% url 'blog:blog-list' %}">Back to Article List</a>
+    <article>
+        <h2>{{ article.title }}</h2>
+        <p>Author: {{ article.author }}</p>
+        <p>Category: {{ article.category }}</p>
+        <img src="{{ article.header_image.url }}" alt="Header Image">
+        <p>{{ article.entry }}</p>
+        <p>Created On: {{ article.created_on }}</p>
+        <p>Last Updated On: {{ article.updated_on }}</p>
+        
+        {% if request.user.is_authenticated %}
+            {% if article.author == request.user.profile %}
+                <a href="{% url 'blog:blog-edit' article.id %}">Edit this article</a>
+            {% endif %}
+        {% endif %}
+        
+        <h3>Other Articles by {{ article.author }}</h3>
+        <ul>
+            {% for other_article in author_articles %}
+                <li><a href="{{ other_article.get_absolute_url }}">{{ other_article.title }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <h3>Add a Comment</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+
+        <h4>Comments</h4>
+        <ul>
+            {% for comment in comments %}
+                <li>{{ comment.entry }} - {{ comment.author }} - {{ comment.created_on }}</li>
+            {% empty %}
+                <li>No comments yet.</li>
+            {% endfor %}
+        </ul>
+        
+    </article>
 {% endblock %}
