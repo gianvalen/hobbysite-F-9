@@ -5,7 +5,6 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
 
-
 from .models import Article, ArticleCategory, Comment
 from .forms import ArticleForm, CommentForm
 from user_management.models import Profile
@@ -27,7 +26,6 @@ class BlogDetailView(DetailView):
         ctx['comment_form'] = CommentForm()
         ctx['comments'] = Comment.objects.filter(article=self.object).order_by('-created_on')
         return ctx
-
    
     def post(self, request, *args, **kwargs):
         form = CommentForm(request.POST)
@@ -43,6 +41,7 @@ class BlogDetailView(DetailView):
             context = self.get_context_data(**kwargs)
             context["form"] = form
             return self.render_to_response(context)
+        
         
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     model = Article
