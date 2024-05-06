@@ -18,17 +18,9 @@ class ArticleCategoryAdmin(admin.ModelAdmin):
 class ArticleAdmin(admin.ModelAdmin):
     model = Article
     inlines = [CommentInLine]
-
-    search_fields = [
-        "title",
-    ]
-
+    search_fields = ["title",]
     list_display = ["title", "created_on"]
-
-    list_filter = [
-        "created_on",
-        "updated_on",
-    ]
+    list_filter = [ "created_on","updated_on",]
 
 
 admin.site.register(ArticleCategory, ArticleCategoryAdmin)
