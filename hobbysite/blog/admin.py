@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import Article, ArticleCategory
+from .models import ArticleCategory, Article, Comment
+
+
+class CommentInLine(admin.TabularInline):
+    model = Comment
 
 
 class ArticleInLine(admin.TabularInline):
@@ -13,9 +17,19 @@ class ArticleCategoryAdmin(admin.ModelAdmin):
 
 class ArticleAdmin(admin.ModelAdmin):
     model = Article
-    list_display = ['title', 'created_on', 'updated_on'] 
-    list_filter = ['created_on', 'updated_on'] 
-    search_fields = ['title']
+    inlines = [CommentInLine]
+
+    search_fields = [
+        "title",
+    ]
+
+    list_display = ["title", "created_on"]
+
+    list_filter = [
+        "created_on",
+        "updated_on",
+    ]
+
 
 admin.site.register(ArticleCategory, ArticleCategoryAdmin)
 admin.site.register(Article, ArticleAdmin)
