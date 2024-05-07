@@ -10,7 +10,7 @@
         <h2>{{ article.title }}</h2>
         <p>Author: {{ article.author }}</p>
         <p>Category: {{ article.category }}</p>
-        <img src="{{ article.header_image.url }}" alt="Header Image">
+        <img src="{{ article.header_image.url }}" alt="Header Image" style="max-width: 100%;">
         <p>{{ article.entry }}</p>
         <p>Created On: {{ article.created_on }}</p>
         <p>Last Updated On: {{ article.updated_on }}</p>
