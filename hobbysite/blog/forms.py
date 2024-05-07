@@ -1,14 +1,20 @@
 from django import forms
+
 from .models import Article, ArticleCategory, Comment
+from user_management.models import Profile
 
 
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        exclude = ['author']
+        fields = '__all__'
         widgets = {
             "category": forms.Select()
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['author'].disabled = True
 
 
 class CommentForm(forms.ModelForm):
