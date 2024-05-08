@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Merchandise Store{% endblock title %}
+{% block content %}
+    <h1>Your Transactions</h1>
+    {% for buyer in buyers_list %}        
+        {% if buyer.user.username != request.user.username %}
+            <h2>{{ buyer.display_name }}</h2>
+        {% endif %}
+        {% for transaction in owner_transactions %}
+            {% if buyer.user.username == transaction.buyer.user.username %}
+                <li>Product: {{ transaction.product.name }}</li>
+                <ul>
+                    <p>
+                        Amount: {{ transaction.amount }} <br>
+                        Status: {{ transaction.transaction_status }} <br>
+                        Created on: {{ transaction.created_on }}
+                    </p>
+                </ul>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% endblock content %}
