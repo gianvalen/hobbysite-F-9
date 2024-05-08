@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from .views import HomePageView
+from user_management.views import dashboard
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +31,8 @@ urlpatterns = [
     path('profile/', include('user_management.urls', namespace = "user_management")),
     path('accounts/', include("django.contrib.auth.urls")),
     path('home', HomePageView.as_view(), name='home'),
+    path('dashboard', dashboard, name = "dashboard"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

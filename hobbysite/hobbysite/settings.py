@@ -70,6 +70,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'templates', 'blog'),
             os.path.join(BASE_DIR, 'templates', 'commissions'),
             os.path.join(BASE_DIR, 'templates', 'homepage'),
+            os.path.join(BASE_DIR, 'templates', 'registration'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

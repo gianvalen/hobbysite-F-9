@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Create a Commission!</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <h2>Jobs for this Commission</h2>
+        <h5>Check "Delete Box" if needed</h5>
+        {{ job_formset.management_form }}
+        {% for form in job_formset %}
+            {{ form.as_p }}
+        {% endfor %}
+        
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

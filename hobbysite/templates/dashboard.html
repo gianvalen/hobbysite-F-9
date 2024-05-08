@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul>
+        <h3>Commissions Created</h3>
+        {% for commission in commissions_created %}
+            <li>
+                <h3><a href="{{ commission.get_absolute_url }}">{{ commission.title }}</a></h3> 
+            </li>
+            {% endfor %}
+        
+        <h3>Commissions Applied to</h3>
+        {% for commission in commissions_applied_to %}
+            <li>
+                <h3><a href="{{ commission.get_absolute_url }}">{{ commission.title }}</a></h3> 
+            </li>
+            {% endfor %}
+        
+        <!-- <h3>Wiki Articles created</h3>
+        {% for wikiarticle in wiki_articles_created %}
+            <li>
+                <h3><a href="{{ article.get_absolute_url }}">{{ wikiarticle.title }}</a></h3> 
+            </li>
+            {% endfor %}
+        <h3>Blog Articles created</h3>
+        {% for blogarticle in blog_articles_created %}
+            <li>
+                <h3><a href="{{ article.get_absolute_url }}">{{ blogarticle.title }}</a></h3> 
+            </li>
+            {% endfor %} -->
+    </ul>
+
+    <!-- Add other sections for user's products, wiki articles, blog articles, etc. -->
+{% endblock %}

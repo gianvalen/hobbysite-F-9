@@ -2,13 +2,85 @@
 
 {% block title %}Commissions List{% endblock %}
 
-{% block content %}
-    <h2>Commissions List</h2>
-    <ul>
-        {% for commission in object_list %}
-            <li><a href="{{ commission.get_absolute_url }}">{{ commission.title }}</a></li>
-            <p>created on: {{ commission.created_on  }}</p>
-            <p>last updated on: {{ commission.updated_on  }}</p>
-        {% endfor %}
-    </ul>
+{% block content %}    
+    {% if request.user.is_authenticated %}
+        <h1>Commissions Created</h1>
+        <h3><a href="{% url 'commissions:commission-create' %}"><button>Create Commission</button></a></h3>
+            {% if commissions_created %}
+            <ul>
+                {% for commission in commissions_created %}
+                    <li>
+                        <h3><a href="{{ commission.get_absolute_url }}">{{ commission.title }}</a></h3>
+                        <p>created on: {{ commission.created_on }}</p>
+                        <p>last updated on: {{ commission.updated_on }}</p>
+                        <p>author: {{ commission.author }}</p>
+                        <p>status: 
+                            {% if commission.status == '1' %}
+                                Open
+                            {% elif commission.status == '2' %}
+                                Full
+                            {% elif commission.status == '3' %}
+                                Completed
+                            {% elif commission.status == '4' %}
+                                Discontinued
+                            {% endif %}
+                        </p>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <p>No commissions created.</p>
+            {% endif %}
+       
+        <h1>Commissions Applied to</h1>
+            {% if commissions_applied_to %}
+                <ul>
+                    {% for commission in commissions_applied_to %}
+                        <li>
+                            <h3><a href="{{ commission.get_absolute_url }}">{{ commission.title }}</a></h3>
+                            <p>created on: {{ commission.created_on }}</p>
+                            <p>last updated on: {{ commission.updated_on }}</p>
+                            <p>author: {{ commission.author }}</p>  
+                            <p>status: 
+                                {% if commission.status == '1' %}
+                                    Open
+                                {% elif commission.status == '2' %}
+                                    Full
+                                {% elif commission.status == '3' %}
+                                    Completed
+                                {% elif commission.status == '4' %}
+                                    Discontinued
+                                {% endif %}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No commissions applied to.</p>
+            {% endif %}
+
+        <h1>All Commissions</h1>
+        <ul>
+            {% for commission in commissions_all %}
+                <li>
+                    <h3><a href="{{ commission.get_absolute_url }}">{{ commission.title }}</a></h3>
+                    <p>created on: {{ commission.created_on  }}</p>
+                    <p>last updated on: {{ commission.updated_on  }}</p>
+                    <p>author: {{ commission.author  }}</p>
+                    <p>status: 
+                        {% if commission.status == '1' %}
+                            Open
+                        {% elif commission.status == '2' %}
+                            Full
+                        {% elif commission.status == '3' %}
+                            Completed
+                        {% elif commission.status == '4' %}
+                            Discontinued
+                        {% endif %}
+                    </p>  
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
 {% endblock %}
