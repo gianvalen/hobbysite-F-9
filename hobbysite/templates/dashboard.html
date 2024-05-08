@@ -2,42 +2,42 @@
 
 {% block content %}
     <ul>
-        <h3>Commissions Created</h3>
+        <h1>Commissions Created</h1>
         {% for commission in commissions_created %}
             <li>
                 <h3><a href="{{ commission.get_absolute_url }}">{{ commission.title }}</a></h3> 
             </li>
             {% endfor %}
         
-        <h3>Commissions Applied to</h3>
+        <h1>Commissions Applied to</h1>
         {% for commission in commissions_applied_to %}
             <li>
                 <h3><a href="{{ commission.get_absolute_url }}">{{ commission.title }}</a></h3> 
             </li>
             {% endfor %}
         
-        <h3>Wiki Articles created</h3>
+        <h1>Wiki Articles created</h1>
         {% for wikiarticle in wiki_articles_created %}
             <li>
                 <h3><a href="{{ wikiarticle.get_absolute_url }}">{{ wikiarticle.title }}</a></h3> 
             </li>
             {% endfor %}
 
-        <h3>Blog Articles created</h3>
+        <h1>Blog Articles created</h1>
         {% for blogarticle in blog_articles_created %}
             <li>
                 <h3><a href="{{ blogarticle.get_absolute_url }}">{{ blogarticle.title }}</a></h3> 
             </li>
             {% endfor %}
 
-        <h3>Products Bought</h3>
+        <h1>Products Bought</h1>
         {% for product in products_bought %}
             <li>
                 <h3><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3> 
             </li>
             {% endfor %}
         
-        <h3>Products Sold</h3>
+        <h1>Products Sold</h1>
         {% for product in products_sold %}
             <li>
                 <h3><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3> 
