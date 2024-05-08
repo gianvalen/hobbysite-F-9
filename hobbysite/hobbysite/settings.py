@@ -41,11 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'profileapp',
+    'user_management',
     'merchstore',
     'wiki',
     'blog',
-    'commissions'
+    'commissions',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +69,8 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'templates', 'onlinewiki'),
             os.path.join(BASE_DIR, 'templates', 'blog'),
             os.path.join(BASE_DIR, 'templates', 'commissions'),
+            os.path.join(BASE_DIR, 'templates', 'homepage'),
+            os.path.join(BASE_DIR, 'templates', 'registration'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -131,14 +133,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    os.path.join(BASE_DIR, "static"),
     ]
 STATIC_URL = '/static/'
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-LOGIN_REDIRECT_URL = '/wiki/articles'       #   BE SURE TO CHANGE THESE. THIS IS ONLY FOR TESTING
-LOGOUT_REDIRECT_URL = '/wiki/articles'      
+LOGIN_REDIRECT_URL = '/home'       #   BE SURE TO CHANGE THESE. THIS IS ONLY FOR TESTING
+LOGOUT_REDIRECT_URL = '/accounts/login'      
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

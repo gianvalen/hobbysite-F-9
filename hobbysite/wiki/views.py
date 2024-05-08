@@ -5,7 +5,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
 
-from profileapp.models import Profile
+from user_management.models import Profile
 
 from .models import Article, ArticleCategory, Comment
 from .forms import ArticleForm, CommentForm

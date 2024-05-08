@@ -1,8 +1,7 @@
 from django.db import models
 from django.urls import reverse
-from profileapp.models import Profile
+from user_management.models import Profile
 
-# Create your models here.
 
 class ArticleCategory(models.Model):
     name = models.CharField(max_length = 255)

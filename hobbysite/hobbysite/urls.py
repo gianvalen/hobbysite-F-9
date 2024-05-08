@@ -19,13 +19,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from user_management.views import dashboard
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('merchstore/', include('merchstore.urls', namespace='merchstore')),
     path('wiki/', include('wiki.urls', namespace = "wiki")),
     path('blog/',include('blog.urls', namespace='blog')),
     path('commissions/', include('commissions.urls', namespace='commissions')),
-    path('profileapp/', include('profileapp.urls', namespace = "profileapp")),
+    path('profile/', include('user_management.urls', namespace = "user_management")),
+    path('accounts/', include("django.contrib.auth.urls")),
+    path('dashboard', dashboard, name = "dashboard"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
