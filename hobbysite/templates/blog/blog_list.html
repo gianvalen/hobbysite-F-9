@@ -6,7 +6,7 @@
 
 {% block content %}
     {% if request.user.is_authenticated %}
-        <a href = "{% url 'blog:blog-create'%}">Create New Article</a>
+        <button><a href = "{% url 'blog:blog-create'%}">Create New Article</a></button>
         <h2>Your Articles</h2>
         <ul>
             {% for article in object_list %}

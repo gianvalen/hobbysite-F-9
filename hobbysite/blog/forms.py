@@ -1,7 +1,6 @@
 from django import forms
 
-from .models import Article, ArticleCategory, Comment
-from user_management.models import Profile
+from .models import Article, Comment
 
 
 class ArticleForm(forms.ModelForm):

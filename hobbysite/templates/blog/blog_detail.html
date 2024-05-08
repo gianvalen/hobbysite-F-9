@@ -17,7 +17,7 @@
         
         {% if request.user.is_authenticated %}
             {% if article.author == request.user.profile %}
-                <a href="{% url 'blog:blog-edit' article.id %}">Edit this article</a>
+                <button><a href="{% url 'blog:blog-edit' article.id %}">Edit this article</a></button>
             {% endif %}
         {% endif %}
         
