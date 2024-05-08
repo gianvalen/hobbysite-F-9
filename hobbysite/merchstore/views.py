@@ -2,7 +2,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 from django.shortcuts import redirect
 
 from .models import Product, Transaction
@@ -68,6 +68,8 @@ class MerchDetailView(DetailView):
                 transaction.save()
                 product.save()
                 return redirect('merchstore:cart')
+            else:
+                return redirect('merchstore:items')
 
         ctx = self.get_context_data(object=product, transaction_form=transaction_form)
         return self.render_to_response(ctx)
