@@ -1,9 +1,12 @@
-<h3>Profile Update</h3>
-<a href = "{% url 'wiki:articles' %}">Go Back</a>
-<!-- MAKE SURE TO CHANGE RETURN URL-->
+{% extends 'base.html' %}
 
-<form method = "POST" action = "">
+<h3>Profile Update</h3>
+<a href="{% url 'home' %}">Go Back</a>
+
+{% block content %}
+<form method="POST" action="">
     {% csrf_token %}
-    {{form.as_p}}
-    <input type = "submit" value = "SUBMIT">
+    {{ form.as_p }}
+    <input type="submit" value="SUBMIT">
 </form>
+{% endblock %}
