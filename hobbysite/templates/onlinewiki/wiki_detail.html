@@ -4,18 +4,65 @@
     Online Wiki
 {% endblock %}
 
+{% block page_heading %}
+    Online Wiki
+{% endblock %}
 
+{% block page_heading2 %}
+    {{article.title}}
+{% endblock %}
 
 {% block content %}
-    <h1>Online Wiki</h1>
-    <h3>{{article.title}}</h3>
+<a href = "{% url 'wiki:articles'%}">Back to Article List</a>
+<br>
+    {% if article.header_image %}
+        <img src = "{{ article.header_image.url }}" alt = "">
+    {% endif %}
 
     {{article.entry}}
-    
     <br>
     <br>
     <br>
     Created on: {{article.created_on}}
     <br>
     Last updated on: {{article.updated_on}}
+    <br>
+    {% if request.user.is_authenticated %}
+        {% if article.author == request.user.username %}
+            <a href = "{% url 'wiki:article-edit' article.id %}">
+                Edit this article
+            </a>
+        {% endif %}
+    {% endif %}
+    <br>
+    Other articles from the {{article.category}} category:
+    <ul>
+        {% for articles in article.article_category.all %}
+            {% if articles.author == request.user.username %}
+            {% else %}
+                <li>
+                    <a href = "{{ articles.get_absolute_url }}">
+                        {{articles.title}}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <h4>COMMENTS</h4>
+    {% if request.user.is_authenticated %}
+        <form method = "POST">
+            {% csrf_token %}
+            {{ form.as_div }}
+            <button type = "submit">Submit</button>
+        </form>
+    {% endif %}
+    <ul>
+    {% for comment in article.comment_article.all %}
+        <li>
+            {{comment.author}} SAYS:
+            {{comment.entry}}
+        </li>
+    {% endfor %}
+    </ul>
 {% endblock %}
