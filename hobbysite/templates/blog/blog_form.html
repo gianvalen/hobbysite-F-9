@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+   Blog
+{% endblock %}
+
+{% block page_heading %}
+    Blog
+{% endblock %}
+
+{% block page_heading2 %}
+    Blog Form
+{% endblock %}
+
+{% block content %}
+    <form method = "POST" enctype = "multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type = "submit">Submit</button>
+    </form>
+{% endblock %}
