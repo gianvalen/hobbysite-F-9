@@ -1,10 +1,43 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}{{ item.name }}{% endblock %}
+{% block title %}Merchandise Store{% endblock title %}
 
 {% block content %}
-    <h1>{{ item.name }}</h1>
-    <p>Product Type: {{ item.product_type.name }}</p>
-    <p>Description: {{ item.description }}</p>
-    <p>Price: {{ item.price }}</p> 
-{% endblock %}
+    <h1>Merchandise Store</h1>
+    <h3><a href="{% url 'merchstore:items' %}">Back to list</a></h3> 
+
+    <h2>{{ item.name }}</h2>
+    <ul>
+        <li>Product Type: {{ item.product_type.name }}</li>
+        <li>Price: {{ item.price }}</li>
+        <li>Description: {{ item.description }}</li>
+        <li>Stock: {{ item.stock }}</li>
+        <li>Seller: {{ item.owner }}</li>
+        <li>Availability: 
+            {% if item.stock_status == 'Available' %}
+                Available
+            {% elif item.stock_status == 'Out of Stock' %}
+                Out of Stock
+            {% else %}
+                On Sale
+            {% endif %}
+        </li>
+    </ul>
+
+    {% if request.user == item.owner.user %}
+        <h3><a href="{% url 'merchstore:update' pk=item.pk %}"><button>Edit product</button></a></h3> 
+    {% else %}
+        <h2>Purchase</h2>
+        <form method="post">
+            <p>Buyer : {{ buyer }}</p>
+            <p>Product : {{ item.name }}</p>
+            {% csrf_token %}
+            {{ transaction_form.as_p }}  
+            {% if item.stock == 0 %}
+                <button type="submit" disabled>Buy Now</button>
+            {% else %}
+                <button type="submit">Buy Now</button>
+            {% endif %}
+        </form>
+    {% endif %}
+{% endblock content %}
