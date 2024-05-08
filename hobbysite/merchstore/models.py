@@ -26,8 +26,8 @@ class Product(models.Model):
 
     STATUS_CHOICES = (
         ('Available', 'Available'),
-        ('On sale', 'On sale'),
-        ('Out of Stock', 'Out of stock')
+        ('On Sale', 'On Sale'),
+        ('Out of Stock', 'Out of Stock')
     )
 
     stock_status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Available')
