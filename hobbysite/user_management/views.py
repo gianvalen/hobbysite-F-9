@@ -34,4 +34,5 @@ def dashboard(request):
         # "wiki_articles_created": WikiArticle.objects.filter(author=user.profile), 
         # "blog_articles_created": BlogArticle.objects.filter(author=user.profile),
     }
+
     return render(request, "dashboard.html", ctx)

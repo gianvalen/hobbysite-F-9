@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from .views import HomePageView
 from user_management.views import dashboard
 
 urlpatterns = [
@@ -29,6 +30,7 @@ urlpatterns = [
     path('commissions/', include('commissions.urls', namespace='commissions')),
     path('profile/', include('user_management.urls', namespace = "user_management")),
     path('accounts/', include("django.contrib.auth.urls")),
+    path('home', HomePageView.as_view(), name='home'),
     path('dashboard', dashboard, name = "dashboard"),
 ]
 
